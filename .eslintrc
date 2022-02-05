@@ -1,0 +1,26 @@
+{
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "extends": ["next", "next/core-web-vitals", "plugin:prettier/recommended"],
+  "plugins": ["react-hooks", "eslint-plugin-import-helpers"],
+  "rules": {
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import-helpers/order-imports": [
+      "warn",
+      {
+        "newlinesBetween": "always",
+        "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
+        "alphabetize": { "order": "asc", "ignoreCase": true }
+      }
+    ],
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "NextJS na prática",
+  "short_name": "NextJS na prática",
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#06092b",
+  "background_color": "#06092b",
+  "description": "Boilerplate utilizando Typescript, React, NextJS e Styled Components!",
+  "start_url": "/",
+  "display": "fullscreen"
+}
