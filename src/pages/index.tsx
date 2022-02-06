@@ -54,6 +54,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       media
-    }
+    },
+    revalidate: 60 * 60 * 24 //1 day
   }
 }
