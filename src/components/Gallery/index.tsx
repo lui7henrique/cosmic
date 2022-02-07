@@ -8,7 +8,7 @@ import {
   Heading
 } from "@chakra-ui/react"
 import { ModalViewImage } from "components/Modal/ViewMedia"
-import { format } from "date-fns"
+import { format, add } from "date-fns"
 import { Media } from "templates/Home/types"
 
 import { MobileGalleryItemInfos } from "./MobileGalleryItemInfos"
@@ -48,7 +48,12 @@ const GalleryItem = ({ children, item }: GalleryItemProps) => {
         display={{ base: "none", lg: "block" }}
       >
         <Heading as="h4" fontSize={50} fontWeight={300}>
-          {format(new Date(item.date), "dd")}
+          {format(
+            add(new Date(item.date), {
+              days: 1
+            }),
+            "dd"
+          )}
         </Heading>
         <Heading as="h4" fontSize={20} fontWeight={300}>
           {format(new Date(item.date), "MMMM")},{" "}
