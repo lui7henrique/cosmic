@@ -14,6 +14,16 @@ export const theme = extendTheme({
           fontWeight: "bold",
           color: "gray.200"
         },
+        "&::-webkit-scrollbar": {
+          width: "5px"
+        },
+        "&::-webkit-scrollbar-track": {
+          width: "5px"
+        },
+        "&::-webkit-scrollbar-thumb": {
+          background: "gray.100",
+          borderRadius: "24px"
+        },
         "div.react-datepicker, div.react-datepicker__header": {
           "border-color": "#1f1f1f",
           "z-index:": 25,
@@ -55,7 +65,7 @@ export const theme = extendTheme({
   },
   colors: {
     gray: {
-      100: "#f0f6f5",
+      100: "#f0f3f5",
       200: "#c9d1d9",
       300: "#8b949e",
       400: "#898d8f",
