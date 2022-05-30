@@ -5,10 +5,13 @@ import {
   AspectRatio,
   useDisclosure,
   Box,
-  Heading
+  Heading,
+  chakra,
+  Skeleton
 } from "@chakra-ui/react"
 import { ModalViewImage } from "components/Modal/ViewMedia"
 import { format, add } from "date-fns"
+import Image from "next/image"
 import { Media } from "templates/Home/types"
 
 import { MobileGalleryItemInfos } from "./MobileGalleryItemInfos"
@@ -17,6 +20,8 @@ type GalleryItemProps = {
   children: React.ReactNode
   item: Media
 }
+
+const ChakraNextImage = chakra(Image)
 
 const GalleryItem = ({ children, item }: GalleryItemProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -67,6 +72,7 @@ const GalleryItem = ({ children, item }: GalleryItemProps) => {
         _hover={{
           filter: "brightness(0.3)"
         }}
+        w="100%"
       >
         {children}
       </AspectRatio>
@@ -96,28 +102,29 @@ export const Gallery = ({ media }: GalleryProps) => {
         md: "repeat(2, 1fr)",
         lg: "repeat(3, 1fr)"
       }}
-      gap={{ base: 4, lg: 4 }}
+      gap={2}
     >
       {media.length &&
         media.map((item) => (
           <>
             <GalleryItem key={item.date} item={item}>
               {item.media_type === "image" ? (
-                <ChakraImage
+                <ChakraNextImage
                   key={JSON.stringify(item)}
                   src={item.url}
                   alt={item.title}
                   w="full"
                   h="full"
                   objectFit="cover"
-                  borderRadius={{ base: 0, lg: "5px" }}
+                  layout="fill"
+                  borderRadius={0}
                 />
               ) : (
                 <iframe
                   src={item.url}
                   title={item.title}
                   style={{
-                    borderRadius: "5px",
+                    borderRadius: "0",
                     zIndex: 5,
                     pointerEvents: "none"
                   }}

@@ -99,11 +99,12 @@ export const FieldDate: React.FC<FieldDateProps> = (
             _focus={{
               boxShadow: "none"
             }}
-            borderRadius="5px"
+            borderRadius="0"
             fontSize={16}
             as={mask ? InputMask : undefined}
             mask={(mask && mask) as string | (string | RegExp)[]}
             autoComplete="false"
+            height="48px"
             {...inputProps}
           />
         }

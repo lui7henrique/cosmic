@@ -11,6 +11,7 @@ import {
 import { FieldDate } from "components/Form/FieldDate"
 import { ModalViewImage } from "components/Modal/ViewMedia"
 import { format } from "date-fns"
+import Link from "next/link"
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { planetary } from "services/planetary"
@@ -60,6 +61,7 @@ export const MainBanner = () => {
     <>
       <Flex
         as="section"
+        direction="column"
         width="full"
         height="95vh"
         background="linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(/earth.jpg)"
@@ -78,12 +80,19 @@ export const MainBanner = () => {
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Heading as="h2" fontSize={{ base: 60, lg: 80 }} fontWeight={300}>
-            Welcome, <i>Earthling!</i>
+          <Heading as="h2" fontSize={{ base: 60, lg: 80 }} fontWeight={200}>
+            Welcome,{" "}
+            <i
+              style={{
+                fontWeight: 600,
+                fontSize: "98px"
+              }}
+            >
+              Earthling!
+            </i>
           </Heading>
-          <Text fontSize={{ base: 18, lg: 26 }} fontWeight={300} mb={4}>
-            Discover the photo that was taken on your birthday.
-          </Text>
+
+          <Text fontSize={{ base: 18, lg: 26 }} fontWeight={300} mb={4}></Text>
 
           <Flex w="100%">
             <Controller
@@ -102,6 +111,7 @@ export const MainBanner = () => {
                   selected={field.value}
                   onChange={field.onChange}
                   autoComplete="off"
+                  placeholderText="Discover the photo that was taken on your birth date."
                 />
               )}
             />
@@ -113,12 +123,24 @@ export const MainBanner = () => {
               icon={<SearchIcon />}
               isDisabled={isLoading}
               bgColor="gray.900"
+              borderRadius="0"
+              size="lg"
               _hover={{ bgColor: "gray.800" }}
             />
           </Flex>
           {isLoading && <Progress size="xs" isIndeterminate />}
         </Flex>
+
+        <Link href="">
+          <a>
+            <Text fontSize={{ base: 12, lg: 14 }} fontWeight={300} mt={2}>
+              Or make a timeline with all the photos taken on your birthdays
+              clicking here.
+            </Text>
+          </a>
+        </Link>
       </Flex>
+
       {media.title && (
         <ModalViewImage isOpen={isOpen} onClose={onClose} media={media} />
       )}
