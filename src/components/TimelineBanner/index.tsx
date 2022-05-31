@@ -55,11 +55,11 @@ export const TimelineBanner = () => {
           as="form"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
-          w={{ base: "100%", lg: "auto" }}
+          w="100%"
           align="flex-start"
           spacing={2}
-          minWidth={{ base: "auto", lg: "1180px" }}
-          px={4}
+          px={{ base: 4, lg: 0 }}
+          maxWidth="1280px"
         >
           {date ? (
             <>

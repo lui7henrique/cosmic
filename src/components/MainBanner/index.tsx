@@ -5,7 +5,8 @@ import {
   Text,
   IconButton,
   useToast,
-  useDisclosure
+  useDisclosure,
+  VStack
 } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
 import { ModalViewImage } from "components/Modal/ViewMedia"
@@ -66,14 +67,17 @@ export const MainBanner = () => {
         backgroundAttachment="fixed"
         alignItems="center"
         justifyContent="center"
-        p={4}
       >
-        <Flex
+        <VStack
           direction="column"
-          alignItems="center"
           as="form"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
+          w="100%"
+          align="flex-start"
+          spacing={2}
+          px={{ base: 4, lg: 0 }}
+          maxWidth="1280px"
         >
           <Heading
             as="h2"
@@ -127,22 +131,21 @@ export const MainBanner = () => {
               _hover={{ bgColor: "gray.800" }}
             />
           </Flex>
-        </Flex>
-
-        <Link href="">
-          <a>
-            <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
-              Or make a timeline with all the photos taken on your birthdays
-              clicking{" "}
-              <Link href="/timeline" passHref>
-                <Text as="a" color="white">
-                  here
-                </Text>
-              </Link>
-              .
-            </Text>
-          </a>
-        </Link>
+          <Link href="">
+            <a>
+              <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
+                Or make a timeline with all the photos taken on your birthdays
+                clicking{" "}
+                <Link href="/timeline" passHref>
+                  <Text as="a" color="white">
+                    here
+                  </Text>
+                </Link>
+                .
+              </Text>
+            </a>
+          </Link>
+        </VStack>
       </Flex>
 
       {media.title && (

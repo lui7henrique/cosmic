@@ -18,11 +18,12 @@ export const theme = extendTheme({
           width: "5px"
         },
         "&::-webkit-scrollbar-track": {
-          width: "5px"
+          width: "5px",
+          background: "gray.900"
         },
         "&::-webkit-scrollbar-thumb": {
           background: "gray.100",
-          borderRadius: "24px"
+          borderRadius: "0px"
         }
       }
     }

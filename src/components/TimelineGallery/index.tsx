@@ -26,10 +26,9 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
     <VStack
       gap={16}
       mx="auto"
-      maxWidth="1180px"
+      maxWidth="1280px"
       w="full"
       alignItems="flex-start"
-      p={{ base: 0, lg: 4 }}
     >
       {media.map((item, index) => {
         const age = media.length - index - 1
