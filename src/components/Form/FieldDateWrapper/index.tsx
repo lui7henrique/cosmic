@@ -8,8 +8,7 @@ type FieldDateWrapperProps = {
 export const FieldDateWrapper = (props: FieldDateWrapperProps) => {
   const { children } = props
 
-  const [g100, g200, g300, g800, g900] = useToken("colors", [
-    "gray.100",
+  const [g200, g300, g800, g900] = useToken("colors", [
     "gray.200",
     "gray.300",
     "gray.800",

@@ -7,7 +7,7 @@ import {
   Link
 } from "@chakra-ui/react"
 import { useMemo } from "react"
-import { Media } from "templates/Home/types"
+import { Media } from "types/media"
 
 interface ModalViewImageProps {
   isOpen: boolean

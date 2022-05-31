@@ -1,18 +1,16 @@
 import {
   Grid,
   GridItem,
-  Image as ChakraImage,
   AspectRatio,
   useDisclosure,
   Box,
   Heading,
-  chakra,
-  Skeleton
+  chakra
 } from "@chakra-ui/react"
 import { ModalViewImage } from "components/Modal/ViewMedia"
 import { format, add } from "date-fns"
 import Image from "next/image"
-import { Media } from "templates/Home/types"
+import { Media } from "types/media"
 
 import { MobileGalleryItemInfos } from "./MobileGalleryItemInfos"
 
