@@ -5,8 +5,7 @@ import {
   Text,
   IconButton,
   useToast,
-  useDisclosure,
-  Progress
+  useDisclosure
 } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
 import { ModalViewImage } from "components/Modal/ViewMedia"
@@ -22,21 +21,19 @@ type FormData = {
 }
 
 export const MainBanner = () => {
-  // hooks
-  const { control, handleSubmit } = useForm<FormData>()
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting }
+  } = useForm<FormData>()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast({
     position: "top-right"
   })
 
-  // states
   const [media, setMedia] = useState<Media>({} as Media)
-  const [isLoading, setIsLoading] = useState(false)
 
-  // functions
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true)
-
     try {
       const { data: media } = await planetary.get<Media[]>("/apod", {
         params: {
@@ -52,8 +49,6 @@ export const MainBanner = () => {
         description: "Something went wrong :(",
         status: "error"
       })
-    } finally {
-      setIsLoading(false)
     }
   }
 
@@ -125,14 +120,13 @@ export const MainBanner = () => {
               ml={2}
               _focus={{ boxShadow: "none" }}
               icon={<SearchIcon />}
-              isDisabled={isLoading}
+              isLoading={isSubmitting}
               bgColor="gray.900"
               borderRadius="0"
               size="lg"
               _hover={{ bgColor: "gray.800" }}
             />
           </Flex>
-          {isLoading && <Progress size="xs" isIndeterminate />}
         </Flex>
 
         <Link href="">

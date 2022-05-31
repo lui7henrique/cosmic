@@ -96,20 +96,6 @@ export const FieldDateWrapper = (props: FieldDateWrapperProps) => {
           color: g200,
           background: g800
         }
-
-        // "div.react-datepicker__current-month": {
-        //   color: "gray.200"
-        // },
-        // "div.react-datepicker__day--disabled": {
-        //   opacity: 0.3
-        // },
-        // "div.react-datepicker__day-name": {
-        //   color: "gray.200"
-        // },
-        // "select.react-datepicker__month-select, select.react-datepicker__year-select":
-        //   {
-        //
-        //   }
       }}
     >
       {children}

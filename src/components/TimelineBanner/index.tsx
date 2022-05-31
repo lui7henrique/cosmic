@@ -1,10 +1,11 @@
 import { SearchIcon } from "@chakra-ui/icons"
-import { Flex, Heading, Text, IconButton, Progress } from "@chakra-ui/react"
+import { Flex, Heading, Text, IconButton, VStack } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
-import { format } from "date-fns"
+import { add, differenceInYears, format } from "date-fns"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect } from "react"
+import CountUp from "react-countup"
 import { useForm, Controller } from "react-hook-form"
 
 type FormData = {
@@ -12,26 +13,27 @@ type FormData = {
 }
 
 export const TimelineBanner = () => {
-  // hooks
-  const { control, handleSubmit } = useForm<FormData>()
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting },
+    setValue
+  } = useForm<FormData>()
 
-  // states
-  const [isLoading, setIsLoading] = useState(false)
-  const { push } = useRouter()
+  const { push, query } = useRouter()
+  const date = query.date as string
 
-  // functions
   const onSubmit = async (data: FormData) => {
-    setIsLoading(true)
-
     try {
       const date = format(new Date(data.birthDay), "MM-dd-yyyy")
 
-      push(`/timeline/${date}`)
-    } catch (err: unknown) {
-    } finally {
-      setIsLoading(false)
-    }
+      await push(`/timeline/${date}`)
+    } catch (err: unknown) {}
   }
+
+  useEffect(() => {
+    date && setValue("birthDay", new Date(date))
+  }, [date, setValue])
 
   return (
     <>
@@ -47,32 +49,62 @@ export const TimelineBanner = () => {
         backgroundAttachment="fixed"
         alignItems="center"
         justifyContent="center"
-        p={4}
       >
-        <Flex
+        <VStack
           direction="column"
-          alignItems="center"
           as="form"
           autoComplete="off"
           onSubmit={handleSubmit(onSubmit)}
+          w={{ base: "100%", lg: "auto" }}
+          align="flex-start"
+          spacing={2}
+          minWidth={{ base: "auto", lg: "1180px" }}
+          px={4}
         >
-          <Heading
-            as="h2"
-            fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
-            fontWeight={200}
-          >
-            Make a{" "}
-            <Text
-              as="i"
-              fontSize={{ base: "6xl", md: "6xl", lg: "8xl" }}
-              fontWeight="bold"
+          {date ? (
+            <>
+              <Heading
+                as="h2"
+                fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
+                fontWeight={200}
+              >
+                {format(new Date(date), "dd MMMM, ")}
+                {""}
+                <Text as="i" fontWeight="bold">
+                  <CountUp
+                    end={+format(new Date(date), "yyyy")}
+                    duration={5}
+                    start={
+                      +format(
+                        add(new Date(date), {
+                          years:
+                            differenceInYears(new Date(), new Date(date)) + 1
+                        }),
+                        "yyyy"
+                      )
+                    }
+                  />
+                  .
+                </Text>
+              </Heading>
+            </>
+          ) : (
+            <Heading
+              as="h2"
+              fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
+              fontWeight={200}
             >
-              {" "}
-              TIMELINE!
-            </Text>
-          </Heading>
-
-          <Text fontSize={{ base: 18, lg: 26 }} fontWeight={300} mb={4}></Text>
+              Make a{" "}
+              <Text
+                as="i"
+                fontSize={{ base: "6xl", md: "6xl", lg: "8xl" }}
+                fontWeight="bold"
+              >
+                {" "}
+                TIMELINE!
+              </Text>
+            </Heading>
+          )}
 
           <Flex w="100%">
             <Controller
@@ -101,29 +133,28 @@ export const TimelineBanner = () => {
               ml={2}
               _focus={{ boxShadow: "none" }}
               icon={<SearchIcon />}
-              isDisabled={isLoading}
+              isLoading={isSubmitting}
               bgColor="gray.900"
               borderRadius="0"
               size="lg"
               _hover={{ bgColor: "gray.800" }}
             />
           </Flex>
-          {isLoading && <Progress size="xs" isIndeterminate />}
-        </Flex>
 
-        <Link href="">
-          <a>
-            <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
-              Or see all the photos taken in chronological order by clicking{" "}
-              <Link href="/" passHref>
-                <Text as="a" color="white">
-                  here
-                </Text>
-              </Link>
-              .
-            </Text>
-          </a>
-        </Link>
+          <Link href="">
+            <a>
+              <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
+                Or see all the photos taken in chronological order by clicking{" "}
+                <Link href="/" passHref>
+                  <Text as="a" color="white">
+                    here
+                  </Text>
+                </Link>
+                .
+              </Text>
+            </a>
+          </Link>
+        </VStack>
       </Flex>
     </>
   )

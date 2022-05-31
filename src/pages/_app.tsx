@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react"
 import { DefaultSeo } from "next-seo"
 import { AppProps } from "next/app"
 import Head from "next/head"
+import NextNProgress from "nextjs-progressbar"
 import { theme } from "styles/theme"
 
 import SEO from "../../next-seo.config"
@@ -23,6 +24,13 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <DefaultSeo {...SEO} />
       <ChakraProvider theme={theme}>
+        <NextNProgress
+          color="#FFF"
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={3}
+          showOnShallow={true}
+        />
         <Component {...pageProps} />
       </ChakraProvider>
     </>
