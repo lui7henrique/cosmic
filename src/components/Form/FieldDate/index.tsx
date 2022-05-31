@@ -19,6 +19,7 @@ import "react-datepicker/dist/react-datepicker.css"
 
 // Styles
 import "react-datepicker/dist/react-datepicker.css"
+import { FieldDateWrapper } from "../FieldDateWrapper"
 
 // Interfaces
 export type FieldDateProps = ReactDatePickerProps & {
@@ -88,31 +89,33 @@ export const FieldDate: React.FC<FieldDateProps> = (
         </FormLabel>
       )}
 
-      <ChakraDatePicker
-        id={name}
-        name={name}
-        customInput={
-          <Input
-            backgroundColor="#FFFFFF1A"
-            backdropFilter="15px"
-            border="none"
-            _focus={{
-              boxShadow: "none"
-            }}
-            borderRadius="0"
-            fontSize={16}
-            as={mask ? InputMask : undefined}
-            mask={(mask && mask) as string | (string | RegExp)[]}
-            autoComplete="false"
-            height="48px"
-            {...inputProps}
-          />
-        }
-        selected={selected && new Date(selected)}
-        placeholderText={placeholderText || "Select a date of birth..."}
-        position="relative"
-        {...rest}
-      />
+      <FieldDateWrapper>
+        <ChakraDatePicker
+          id={name}
+          name={name}
+          customInput={
+            <Input
+              backgroundColor="#FFFFFF1A"
+              backdropFilter="15px"
+              border="none"
+              _focus={{
+                boxShadow: "none"
+              }}
+              borderRadius="0"
+              fontSize={16}
+              as={mask ? InputMask : undefined}
+              mask={(mask && mask) as string | (string | RegExp)[]}
+              autoComplete="false"
+              height="48px"
+              {...inputProps}
+            />
+          }
+          selected={selected && new Date(selected)}
+          placeholderText={placeholderText || "Select a date of birth..."}
+          position="relative"
+          {...rest}
+        />
+      </FieldDateWrapper>
 
       {!!error && <FormErrorMessage>{error.message}</FormErrorMessage>}
     </FormControl>

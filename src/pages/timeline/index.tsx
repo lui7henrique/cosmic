@@ -1,15 +1,7 @@
-import { format, sub } from "date-fns"
-import { GetStaticProps } from "next"
 import { NextSeo } from "next-seo"
-import { planetary } from "services/planetary"
-import { HomeTemplate } from "templates/Home"
-import { Media } from "types/media"
+import { TimelineTemplate } from "templates/Timeline"
 
-type HomeProps = {
-  media: Media[]
-}
-
-export default function Home({ media }: HomeProps) {
+export default function Timeline() {
   return (
     <>
       <NextSeo
@@ -31,30 +23,7 @@ export default function Home({ media }: HomeProps) {
           ]
         }}
       />
-      <HomeTemplate media={media} />
+      <TimelineTemplate />
     </>
   )
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await planetary.get<Media[]>("/apod", {
-    params: {
-      start_date: format(
-        sub(new Date(), {
-          months: 1
-        }),
-        "yyyy-MM-dd"
-      ),
-      end_date: format(new Date(), "yyyy-MM-dd")
-    }
-  })
-
-  const media = data.reverse() || []
-
-  return {
-    props: {
-      media
-    },
-    revalidate: 60 * 60 * 24 //1 day
-  }
 }

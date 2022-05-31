@@ -1,6 +1,6 @@
 import { Box, Flex, Avatar, Text } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
-import { Media } from "templates/Home/types"
+import { Media } from "types/media"
 
 type MobileGalleryItemInfosProps = {
   item: Media

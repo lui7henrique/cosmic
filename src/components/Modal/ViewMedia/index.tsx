@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react"
 import { format, formatDistance, add } from "date-fns"
 import { HiDotsHorizontal } from "react-icons/hi"
-import { Media } from "templates/Home/types"
+import { Media } from "types/media"
 
 import { ModalViewOptionsImage } from "../VideoOptionsMedia"
 

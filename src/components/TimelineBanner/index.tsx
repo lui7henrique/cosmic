@@ -1,57 +1,33 @@
 import { SearchIcon } from "@chakra-ui/icons"
-import {
-  Flex,
-  Heading,
-  Text,
-  IconButton,
-  useToast,
-  useDisclosure,
-  Progress
-} from "@chakra-ui/react"
+import { Flex, Heading, Text, IconButton, Progress } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
-import { ModalViewImage } from "components/Modal/ViewMedia"
 import { format } from "date-fns"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useState } from "react"
 import { useForm, Controller } from "react-hook-form"
-import { planetary } from "services/planetary"
-import { Media } from "types/media"
 
 type FormData = {
-  birthdate: Date
+  birthDay: Date
 }
 
-export const MainBanner = () => {
+export const TimelineBanner = () => {
   // hooks
   const { control, handleSubmit } = useForm<FormData>()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const toast = useToast({
-    position: "top-right"
-  })
 
   // states
-  const [media, setMedia] = useState<Media>({} as Media)
   const [isLoading, setIsLoading] = useState(false)
+  const { push } = useRouter()
 
   // functions
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
 
     try {
-      const { data: media } = await planetary.get<Media[]>("/apod", {
-        params: {
-          start_date: format(data.birthdate, "yyyy-MM-dd"),
-          end_date: format(data.birthdate, "yyyy-MM-dd")
-        }
-      })
-      setMedia(media[0])
-      onOpen()
+      const date = format(new Date(data.birthDay), "MM-dd-yyyy")
+
+      push(`/timeline/${date}`)
     } catch (err: unknown) {
-      toast({
-        title: "Error",
-        description: "Something went wrong :(",
-        status: "error"
-      })
     } finally {
       setIsLoading(false)
     }
@@ -64,7 +40,7 @@ export const MainBanner = () => {
         direction="column"
         width="full"
         height="95vh"
-        background="linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(/earth.jpg)"
+        background="linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5)), url(/banner2.jpeg)"
         backgroundSize="contain"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
@@ -85,14 +61,14 @@ export const MainBanner = () => {
             fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
             fontWeight={200}
           >
-            Welcome,{" "}
+            Make a{" "}
             <Text
               as="i"
               fontSize={{ base: "6xl", md: "6xl", lg: "8xl" }}
               fontWeight="bold"
             >
               {" "}
-              Earthling!
+              TIMELINE!
             </Text>
           </Heading>
 
@@ -100,7 +76,7 @@ export const MainBanner = () => {
 
           <Flex w="100%">
             <Controller
-              name="birthdate"
+              name="birthDay"
               control={control}
               render={({ field }) => (
                 <FieldDate
@@ -115,7 +91,7 @@ export const MainBanner = () => {
                   selected={field.value}
                   onChange={field.onChange}
                   autoComplete="off"
-                  placeholderText="Discover the photo that was taken on your birth date."
+                  placeholderText="Select your birth day!"
                 />
               )}
             />
@@ -138,9 +114,8 @@ export const MainBanner = () => {
         <Link href="">
           <a>
             <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
-              Or make a timeline with all the photos taken on your birthdays
-              clicking{" "}
-              <Link href="/timeline" passHref>
+              Or see all the photos taken in chronological order by clicking{" "}
+              <Link href="/" passHref>
                 <Text as="a" color="white">
                   here
                 </Text>
@@ -150,10 +125,6 @@ export const MainBanner = () => {
           </a>
         </Link>
       </Flex>
-
-      {media.title && (
-        <ModalViewImage isOpen={isOpen} onClose={onClose} media={media} />
-      )}
     </>
   )
 }

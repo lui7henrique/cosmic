@@ -5,8 +5,7 @@ import { format, sub } from "date-fns"
 import { useState } from "react"
 import InfiniteScroll from "react-infinite-scroll-component"
 import { planetary } from "services/planetary"
-
-import { Media } from "./types"
+import { Media } from "types/media"
 
 type HomeTemplateProps = {
   media: Media[]
