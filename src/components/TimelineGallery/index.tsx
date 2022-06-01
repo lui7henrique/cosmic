@@ -86,12 +86,7 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
               </Text>
             </Flex>
 
-            <AspectRatio
-              w={{ base: "100%", lg: "50%" }}
-              ratio={1}
-              data-aos="fade-right"
-              data-aos-delay="400"
-            >
+            <AspectRatio w={{ base: "100%", lg: "50%" }} ratio={1}>
               {item.media_type === "image" ? (
                 <ChakraNextImage
                   w="100%"
