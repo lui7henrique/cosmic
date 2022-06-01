@@ -69,7 +69,7 @@ export function ModalViewImage({
               d={{ base: "block", lg: "flex" }}
               direction={{ base: "column", lg: "row" }}
               borderRadius="5px"
-              maxWidth="1280px"
+              maxWidth="935px"
             >
               <AspectRatio ratio={1} w="100%">
                 {media_type === "image" ? (

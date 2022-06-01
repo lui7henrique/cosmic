@@ -26,7 +26,7 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
     <VStack
       gap={16}
       mx="auto"
-      maxWidth="1280px"
+      maxWidth="935px"
       w="full"
       alignItems="flex-start"
       py={8}

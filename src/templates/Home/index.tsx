@@ -49,7 +49,7 @@ export const HomeTemplate = ({ media: initialMedia }: HomeTemplateProps) => {
   return (
     <>
       <MainBanner />
-      <Box maxWidth="1280px" mx="auto" p={{ base: 0, lg: 8 }}>
+      <Box maxWidth="935px" mx="auto">
         <InfiniteScroll
           dataLength={media.length}
           next={fetchMedia}

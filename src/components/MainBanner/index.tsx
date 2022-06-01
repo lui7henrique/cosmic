@@ -78,7 +78,7 @@ export const MainBanner = () => {
           align="flex-start"
           spacing={2}
           px={{ base: 4, lg: 0 }}
-          maxWidth="1280px"
+          maxWidth="935px"
         >
           <Heading
             as="h2"
