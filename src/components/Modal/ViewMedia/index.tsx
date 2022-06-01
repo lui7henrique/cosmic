@@ -45,7 +45,13 @@ export function ModalViewImage({
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose} size="full" blockScrollOnMount>
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        size="full"
+        blockScrollOnMount
+        isCentered
+      >
         <ModalOverlay>
           <ModalContent mx="auto" w="auto" h="auto" bg="transparent" margin={8}>
             <CloseButton
