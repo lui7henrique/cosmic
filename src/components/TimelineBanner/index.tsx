@@ -151,7 +151,7 @@ export const TimelineBanner = (props: TimelineBannerProps) => {
               borderRadius="0"
               size="lg"
               _hover={{ bgColor: "gray.800" }}
-              data-aos="fade-left"
+              data-aos="fade-right"
               data-aos-delay="400"
             />
           </Flex>
