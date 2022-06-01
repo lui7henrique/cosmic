@@ -6,7 +6,8 @@ import {
   IconButton,
   useToast,
   useDisclosure,
-  VStack
+  VStack,
+  Box
 } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
 import { ModalViewImage } from "components/Modal/ViewMedia"
@@ -83,6 +84,8 @@ export const MainBanner = () => {
             as="h2"
             fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
             fontWeight={200}
+            data-aos="fade-right"
+            data-aos-delay="50"
           >
             Welcome,{" "}
             <Text
@@ -97,27 +100,30 @@ export const MainBanner = () => {
 
           <Text fontSize={{ base: 18, lg: 26 }} fontWeight={300} mb={4}></Text>
 
-          <Flex w="100%">
-            <Controller
-              name="birthdate"
-              control={control}
-              render={({ field }) => (
-                <FieldDate
-                  dateFormat="dd/MM/yyyy"
-                  mask="99/99/9999"
-                  maxDate={new Date()}
-                  minDate={new Date(1998, 0, 1)}
-                  showYearDropdown
-                  showMonthDropdown
-                  name={field.name}
-                  dropdownMode="select"
-                  selected={field.value}
-                  onChange={field.onChange}
-                  autoComplete="off"
-                  placeholderText="Discover the photo that was taken on your birth date."
-                />
-              )}
-            />
+          <Flex w="100%" data-aos="fade-right" data-aos-delay="150">
+            <Box w="100%" data-aos="fade-right" data-aos-delay="300">
+              <Controller
+                name="birthdate"
+                control={control}
+                render={({ field }) => (
+                  <FieldDate
+                    dateFormat="dd/MM/yyyy"
+                    mask="99/99/9999"
+                    maxDate={new Date()}
+                    minDate={new Date(1998, 0, 1)}
+                    showYearDropdown
+                    showMonthDropdown
+                    name={field.name}
+                    dropdownMode="select"
+                    selected={field.value}
+                    onChange={field.onChange}
+                    autoComplete="off"
+                    placeholderText="Discover the photo that was taken on your birth date."
+                  />
+                )}
+              />
+            </Box>
+
             <IconButton
               aria-label="search"
               type="submit"
@@ -129,22 +135,29 @@ export const MainBanner = () => {
               borderRadius="0"
               size="lg"
               _hover={{ bgColor: "gray.800" }}
+              data-aos="fade-left"
+              data-aos-delay="400"
             />
           </Flex>
-          <Link href="">
-            <a>
-              <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
-                Or make a timeline with all the photos taken on your birthdays
-                clicking{" "}
-                <Link href="/timeline" passHref>
-                  <Text as="a" color="white">
-                    here
-                  </Text>
-                </Link>
-                .
+
+          <Text
+            fontSize={{ base: 12, lg: 16 }}
+            fontWeight={300}
+            mt={2}
+            data-aos="fade-up"
+            data-aos-delay="400"
+            textAlign="end"
+            w="100%"
+          >
+            Or make a timeline with all the photos taken on your birthdays
+            clicking{" "}
+            <Link href="/timeline" passHref>
+              <Text as="a" color="white">
+                here
               </Text>
-            </a>
-          </Link>
+            </Link>
+            .
+          </Text>
         </VStack>
       </Flex>
 

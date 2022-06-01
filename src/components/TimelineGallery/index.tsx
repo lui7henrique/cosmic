@@ -42,8 +42,6 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
 
         const onRight = index % 2 === 0
 
-        console.log(item.url)
-
         return (
           <Stack
             direction={{
@@ -60,23 +58,40 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
               w={{ base: "100%", lg: "50%" }}
               px={{ base: 4, lg: 0 }}
             >
-              <Box>
+              <Box data-aos="fade-left" data-aos-delay="100">
                 <Badge>{date}</Badge>
               </Box>
 
-              <Heading as="h2" fontWeight="thin">
+              <Heading
+                as="h2"
+                fontWeight="thin"
+                data-aos="fade-left"
+                data-aos-delay="200"
+              >
                 <Heading as="span" fontSize="5xl">
                   {age}.{" "}
                 </Heading>
                 {item.title}
               </Heading>
 
-              <Text textAlign="justify" mt={2} fontSize={16} lineHeight={1.6}>
+              <Text
+                textAlign="justify"
+                mt={2}
+                fontSize={16}
+                lineHeight={1.6}
+                data-aos="fade-left"
+                data-aos-delay="300"
+              >
                 {item.explanation}
               </Text>
             </Flex>
 
-            <AspectRatio w={{ base: "100%", lg: "50%" }} ratio={1}>
+            <AspectRatio
+              w={{ base: "100%", lg: "50%" }}
+              ratio={1}
+              data-aos="fade-right"
+              data-aos-delay="400"
+            >
               {item.media_type === "image" ? (
                 <ChakraNextImage
                   w="100%"

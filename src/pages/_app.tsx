@@ -1,14 +1,25 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { ChakraProvider } from "@chakra-ui/react"
+import AOS from "aos"
+import "aos/dist/aos.css"
 import { DefaultSeo } from "next-seo"
 import { AppProps } from "next/app"
 import Head from "next/head"
 import NextNProgress from "nextjs-progressbar"
+import { useEffect } from "react"
 import { theme } from "styles/theme"
 
 import SEO from "../../next-seo.config"
 
 function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    AOS.init({
+      easing: "ease-out-cubic",
+      once: true,
+      duration: 250
+    })
+  }, [])
+
   return (
     <>
       <Head>

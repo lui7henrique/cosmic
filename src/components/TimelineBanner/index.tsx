@@ -1,5 +1,5 @@
 import { SearchIcon } from "@chakra-ui/icons"
-import { Flex, Heading, Text, IconButton, VStack } from "@chakra-ui/react"
+import { Flex, Heading, Text, IconButton, VStack, Box } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
 import { add, differenceInYears, format } from "date-fns"
 import Link from "next/link"
@@ -93,6 +93,8 @@ export const TimelineBanner = () => {
               as="h2"
               fontSize={{ base: "3xl", md: "3xl", lg: "6xl" }}
               fontWeight={200}
+              data-aos="fade-right"
+              data-aos-delay="150"
             >
               Make a{" "}
               <Text
@@ -107,26 +109,29 @@ export const TimelineBanner = () => {
           )}
 
           <Flex w="100%">
-            <Controller
-              name="birthDay"
-              control={control}
-              render={({ field }) => (
-                <FieldDate
-                  dateFormat="dd/MM/yyyy"
-                  mask="99/99/9999"
-                  maxDate={new Date()}
-                  minDate={new Date(1998, 0, 1)}
-                  showYearDropdown
-                  showMonthDropdown
-                  name={field.name}
-                  dropdownMode="select"
-                  selected={field.value}
-                  onChange={field.onChange}
-                  autoComplete="off"
-                  placeholderText="Select your birth day!"
-                />
-              )}
-            />
+            <Box w="100%" data-aos="fade-right" data-aos-delay="300">
+              <Controller
+                name="birthDay"
+                control={control}
+                render={({ field }) => (
+                  <FieldDate
+                    dateFormat="dd/MM/yyyy"
+                    mask="99/99/9999"
+                    maxDate={new Date()}
+                    minDate={new Date(1998, 0, 1)}
+                    showYearDropdown
+                    showMonthDropdown
+                    name={field.name}
+                    dropdownMode="select"
+                    selected={field.value}
+                    onChange={field.onChange}
+                    autoComplete="off"
+                    placeholderText="Select your birth day!"
+                  />
+                )}
+              />
+            </Box>
+
             <IconButton
               aria-label="search"
               type="submit"
@@ -138,22 +143,28 @@ export const TimelineBanner = () => {
               borderRadius="0"
               size="lg"
               _hover={{ bgColor: "gray.800" }}
+              data-aos="fade-left"
+              data-aos-delay="400"
             />
           </Flex>
 
-          <Link href="">
-            <a>
-              <Text fontSize={{ base: 12, lg: 16 }} fontWeight={300} mt={2}>
-                Or see all the photos taken in chronological order by clicking{" "}
-                <Link href="/" passHref>
-                  <Text as="a" color="white">
-                    here
-                  </Text>
-                </Link>
-                .
+          <Text
+            fontSize={{ base: 12, lg: 16 }}
+            fontWeight={300}
+            mt={2}
+            data-aos="fade-up"
+            data-aos-delay="400"
+            textAlign="end"
+            w="100%"
+          >
+            Or see all the photos taken in chronological order by clicking{" "}
+            <Link href="/" passHref>
+              <Text as="a" color="white">
+                here
               </Text>
-            </a>
-          </Link>
+            </Link>
+            .
+          </Text>
         </VStack>
       </Flex>
     </>
