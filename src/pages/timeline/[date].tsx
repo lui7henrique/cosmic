@@ -2,7 +2,6 @@ import { add, differenceInYears, format } from "date-fns"
 import { GetServerSideProps } from "next"
 import { NextSeo } from "next-seo"
 import { planetary } from "services/planetary"
-
 import {
   TimelineByDateTemplate,
   TimelineByDateTemplateProps
@@ -38,8 +37,8 @@ export default function TimelineByDate(props: TimelineByDateProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const date = ctx.query?.date
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const date = params?.date
 
   if (date && typeof date === "string") {
     const birthDate = new Date(date)
@@ -66,7 +65,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return {
       props: {
-        media: media.filter((i) => i).reverse()
+        media: media.filter((i) => i).reverse(),
+        date
       }
     }
   }

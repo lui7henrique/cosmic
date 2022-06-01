@@ -4,14 +4,16 @@ import { Media } from "types/media"
 
 export type TimelineByDateTemplateProps = {
   media: Media[]
+  date: string
 }
 
 export const TimelineByDateTemplate = ({
-  media
+  media,
+  date
 }: TimelineByDateTemplateProps) => {
   return (
     <>
-      <TimelineBanner />
+      <TimelineBanner date={date} />
       <TimelineGallery media={media} />
     </>
   )

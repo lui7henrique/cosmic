@@ -4,6 +4,7 @@ import { FieldDate } from "components/Form/FieldDate"
 import { add, differenceInYears, format } from "date-fns"
 import Link from "next/link"
 import { useRouter } from "next/router"
+
 import { useEffect } from "react"
 import CountUp from "react-countup"
 import { useForm, Controller } from "react-hook-form"
@@ -12,16 +13,20 @@ type FormData = {
   birthDay: Date
 }
 
-export const TimelineBanner = () => {
+type TimelineBannerProps = {
+  date?: string
+}
+
+export const TimelineBanner = (props: TimelineBannerProps) => {
+  const { date } = props
+
   const {
     control,
     handleSubmit,
     formState: { isSubmitting },
     setValue
   } = useForm<FormData>()
-
-  const { push, query } = useRouter()
-  const date = query.date as string
+  const { push } = useRouter()
 
   const onSubmit = async (data: FormData) => {
     try {
