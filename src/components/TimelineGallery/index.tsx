@@ -58,14 +58,14 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
               w={{ base: "100%", lg: "50%" }}
               px={{ base: 4, lg: 0 }}
             >
-              <Box data-aos="fade-left" data-aos-delay="100">
+              <Box data-aos="fade-right" data-aos-delay="100">
                 <Badge>{date}</Badge>
               </Box>
 
               <Heading
                 as="h2"
                 fontWeight="thin"
-                data-aos="fade-left"
+                data-aos="fade-right"
                 data-aos-delay="200"
               >
                 <Heading as="span" fontSize="5xl">
@@ -79,7 +79,7 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
                 mt={2}
                 fontSize={16}
                 lineHeight={1.6}
-                data-aos="fade-left"
+                data-aos="fade-right"
                 data-aos-delay="300"
               >
                 {item.explanation}
