@@ -113,6 +113,7 @@ export const FieldDate: React.FC<FieldDateProps> = (
           selected={selected && new Date(selected)}
           placeholderText={placeholderText || "Select a date of birth..."}
           position="relative"
+          popperPlacement="top-start"
           {...rest}
         />
       </FieldDateWrapper>
