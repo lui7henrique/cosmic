@@ -13,12 +13,12 @@ export default function Home({ media }: HomeProps) {
   return (
     <>
       <NextSeo
-        title="NASAgram"
+        title="NASAGRAM"
         description="Everyday a different picture or video of the universe, with a short explanation professional astronomer!"
         canonical="https://nasa-gram.vercel.app/"
         openGraph={{
           url: "https://nasa-gram.vercel.app/",
-          title: "NASA Gallery",
+          title: "NASAGRAM",
           description:
             "Everyday a different picture or video of the universe, with a short explanation professional astronomer!",
           images: [

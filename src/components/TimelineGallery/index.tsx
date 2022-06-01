@@ -29,6 +29,7 @@ export const TimelineGallery = (props: TimelineGalleryProps) => {
       maxWidth="1280px"
       w="full"
       alignItems="flex-start"
+      py={8}
     >
       {media.map((item, index) => {
         const age = media.length - index - 1

@@ -5,20 +5,20 @@ export default function Timeline() {
   return (
     <>
       <NextSeo
-        title="NASAgram"
-        description="Everyday a different picture or video of the universe, with a short explanation professional astronomer!"
+        title="NASAGRAM"
+        description="Make a timeline with all the photos taken by NASA on your birthday!"
         canonical="https://nasa-gram.vercel.app/"
         openGraph={{
           url: "https://nasa-gram.vercel.app/",
-          title: "NASA Gallery",
+          title: "NASAGRAM",
           description:
-            "Everyday a different picture or video of the universe, with a short explanation professional astronomer!",
+            "Make a timeline with all the photos taken by NASA on your birthday!",
           images: [
             {
-              url: "https://nasa-gram.vercel.app/cover.jpg",
+              url: "https://apod.nasa.gov/apod/image/2205/DiamondMoonWSMALL.jpg",
               width: 1920,
               height: 1080,
-              alt: "A Solar Prominence from SOHO"
+              alt: "A Jewel on the Flower Moon"
             }
           ]
         }}
