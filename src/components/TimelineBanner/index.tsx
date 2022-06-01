@@ -2,12 +2,15 @@ import { SearchIcon } from "@chakra-ui/icons"
 import { Flex, Heading, Text, IconButton, VStack, Box } from "@chakra-ui/react"
 import { FieldDate } from "components/Form/FieldDate"
 import { add, differenceInYears, format } from "date-fns"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import { useRouter } from "next/router"
-
 import { useEffect } from "react"
-import CountUp from "react-countup"
 import { useForm, Controller } from "react-hook-form"
+
+const CountUp = dynamic(() => import("react-countup"), {
+  ssr: false
+})
 
 type FormData = {
   birthDay: Date
