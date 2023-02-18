@@ -19,7 +19,7 @@ import { planetary } from "services/planetary"
 import { Media } from "types/media"
 
 type FormData = {
-  birthdate: Date
+  birthDate: Date
 }
 
 export const MainBanner = () => {
@@ -36,13 +36,16 @@ export const MainBanner = () => {
   const [media, setMedia] = useState<Media>({} as Media)
 
   const onSubmit = async (data: FormData) => {
+    const { birthDate } = data
+
     try {
       const { data: media } = await planetary.get<Media[]>("/apod", {
         params: {
-          start_date: format(data.birthdate, "yyyy-MM-dd"),
-          end_date: format(data.birthdate, "yyyy-MM-dd")
+          start_date: format(birthDate, "yyyy-MM-dd"),
+          end_date: format(birthDate, "yyyy-MM-dd")
         }
       })
+
       setMedia(media[0])
       onOpen()
     } catch (err: unknown) {
@@ -103,7 +106,7 @@ export const MainBanner = () => {
           <Flex w="100%" data-aos="fade-right" data-aos-delay="150">
             <Box w="100%" data-aos="fade-right" data-aos-delay="300">
               <Controller
-                name="birthdate"
+                name="birthDate"
                 control={control}
                 render={({ field }) => (
                   <FieldDate
