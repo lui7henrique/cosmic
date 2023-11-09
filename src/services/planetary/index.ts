@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Apod } from './types'
+import { Apod, ApodItem } from './types'
 
 const planetary = axios.create({
   baseURL: 'https://api.nasa.gov/planetary',
@@ -8,7 +8,7 @@ const planetary = axios.create({
   },
 })
 
-export const apod = async (startDate: string, endDate: string) => {
+export const apodFeed = async (startDate: string, endDate: string) => {
   try {
     const { data } = await planetary.get<Apod>('/apod', {
       params: {
@@ -18,6 +18,20 @@ export const apod = async (startDate: string, endDate: string) => {
     })
 
     return data.reverse()
+  } catch (e) {
+    console.log({ e })
+  }
+}
+
+export const apodDate = async (date: string) => {
+  try {
+    const { data } = await planetary.get<ApodItem>('/apod', {
+      params: {
+        date,
+      },
+    })
+
+    return data
   } catch (e) {
     console.log({ e })
   }

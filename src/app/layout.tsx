@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk as SpaceGrotesk } from 'next/font/google'
+// eslint-disable-next-line camelcase
+import { Roboto_Mono } from 'next/font/google'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
@@ -7,7 +8,7 @@ import { cn } from '@/lib/utils'
 import './globals.css'
 import { ThemeToggle } from '@/components/theme-toggle'
 
-const space = SpaceGrotesk({ subsets: ['latin'] })
+const roboto = Roboto_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Cosmic',
@@ -20,13 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body
-        className={cn(
-          'overflow-x-hidden bg-background font-sans antialiased',
-          space.className,
-        )}
-      >
+    <html lang="en" className={roboto.className}>
+      <body className={cn('overflow-x-hidden bg-background antialiased')}>
         <ThemeProvider>
           {children} <ThemeToggle />
         </ThemeProvider>

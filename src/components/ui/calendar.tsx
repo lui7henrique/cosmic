@@ -2,12 +2,7 @@
 
 import * as React from 'react'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
-import {
-  DayPicker,
-  DropdownProps,
-  useNavigation,
-  useDayPicker,
-} from 'react-day-picker'
+import { DayPicker, DropdownProps, useNavigation } from 'react-day-picker'
 
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/components/ui/button'
@@ -20,45 +15,70 @@ import {
   SelectValue,
 } from './select'
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  onSelect: any
+}
 
 type CustomDropdownItem = {
   key: string
   props: { value: number; children: string }
 }
 
-type CustomDropdownProps = DropdownProps & Pick<CalendarProps, 'selected'>
+type CustomDropdownProps = DropdownProps &
+  Pick<CalendarProps, 'selected' | 'onSelect'>
 
 const CustomDropdown = (props: CustomDropdownProps) => {
-  const { caption, name, children } = props
+  const { caption, name, children, selected, onSelect } = props
+
+  const selectedDate = selected as Date
 
   const { goToDate, currentMonth } = useNavigation()
 
   const handleValueChange = (value: string) => {
     if (name === 'months') {
-      const newDate = currentMonth
+      const newDate = new Date(currentMonth)
       newDate.setMonth(Number(value))
+
+      onSelect(newDate)
 
       return goToDate(newDate)
     }
 
     if (name === 'years') {
-      const newDate = new Date()
+      const newDate = new Date(selectedDate)
       newDate.setFullYear(Number(value))
+
+      onSelect(newDate)
 
       return goToDate(newDate)
     }
   }
 
+  const defaultValue = React.useMemo(() => {
+    if (selectedDate) {
+      if (name === 'months') {
+        const month = selectedDate.getMonth()
+        return String(month)
+      }
+
+      if (name === 'years') {
+        const year = selectedDate.getFullYear()
+        return String(year)
+      }
+    }
+  }, [name, selectedDate])
+
+  const content = children as CustomDropdownItem[]
+
   return (
-    <Select onValueChange={handleValueChange}>
+    <Select onValueChange={handleValueChange} defaultValue={defaultValue}>
       <SelectTrigger className="">
         <SelectValue placeholder={caption} />
       </SelectTrigger>
 
       <SelectContent>
         <SelectGroup className="max-h-[300px] overflow-y-auto">
-          {(children as CustomDropdownItem[]).map((item) => {
+          {content.map((item) => {
             const { key, props } = item
 
             return (
@@ -133,7 +153,11 @@ function Calendar({
         IconRight: () => <ChevronRightIcon className="h-4 w-4" />,
 
         Dropdown: ({ ...dropdownProps }) => (
-          <CustomDropdown {...dropdownProps} selected={props.selected} />
+          <CustomDropdown
+            {...dropdownProps}
+            selected={props.selected}
+            onSelect={props.onSelect}
+          />
         ),
       }}
       {...props}

@@ -4,9 +4,10 @@ import { Apod } from '@/services/planetary/types'
 import InfiniteScroll from 'react-infinite-scroller'
 import { FeedApodItem } from './feed-apod-item'
 import { useRef, useState } from 'react'
-import { apod } from '@/services/planetary'
-import { format, subMonths } from 'date-fns'
+import { apodFeed } from '@/services/planetary'
+import { subDays, subMonths } from 'date-fns'
 import { formatToApi } from '@/utils/format-to-api'
+import { FeedApodItemSkeleton } from './feed-apod-item-skeleton'
 
 type FeedApodClientProps = {
   initialContent: Apod
@@ -21,9 +22,10 @@ export const FeedApodClient = ({ initialContent }: FeedApodClientProps) => {
     if (!fetching.current) {
       try {
         const newStarDate = subMonths(subMonths(new Date(), 1), page)
-        const newEndDate = subMonths(new Date(), page)
 
-        const newContent = await apod(
+        const newEndDate = subDays(subMonths(new Date(), page), 1)
+
+        const newContent = await apodFeed(
           formatToApi(newStarDate),
           formatToApi(newEndDate),
         )
@@ -40,12 +42,8 @@ export const FeedApodClient = ({ initialContent }: FeedApodClientProps) => {
       hasMore
       pageStart={0}
       loadMore={loadMore}
-      loader={
-        <span key={0} className="loader">
-          Loading ...
-        </span>
-      }
-      className="mx-auto max-w-feed space-y-8 py-8"
+      loader={<FeedApodItemSkeleton />}
+      className="mx-auto grid max-w-[720px] grid-cols-2 gap-4 py-8"
     >
       {content.map((item) => {
         return <FeedApodItem item={item} key={item.date} />
