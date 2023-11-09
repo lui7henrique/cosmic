@@ -9,14 +9,42 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from './ui/tooltip'
-import { FeedItemExplanation } from './feed-apod-item-explanation'
+import { FeedItemExplanation } from './feed-item-explanation'
 
-type FeedApodItemProps = {
+type FeedItemProps = {
   item: ApodItem
+  variant: 'minimal' | 'full'
 }
 
-export const FeedApodItem = ({ item }: FeedApodItemProps) => {
+export const FeedItem = ({ item, variant }: FeedItemProps) => {
   const { date, copyright, explanation, url, title, media_type: type } = item
+
+  const content = (
+    <div className="relative aspect-square w-full overflow-hidden rounded-sm">
+      {type === 'image' ? (
+        <Image
+          src={url}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="width 100%"
+          priority={false}
+        />
+      ) : (
+        <iframe
+          src={url}
+          title={title}
+          allowFullScreen
+          key={date}
+          className="aspect-square w-full"
+        />
+      )}
+    </div>
+  )
+
+  if (variant === 'minimal') {
+    return <>{content}</>
+  }
 
   return (
     <div className="w-full space-y-4">
@@ -50,26 +78,7 @@ export const FeedApodItem = ({ item }: FeedApodItemProps) => {
         </div>
       </div>
 
-      <div className="relative aspect-square w-full overflow-hidden rounded-sm">
-        {type === 'image' ? (
-          <Image
-            src={url}
-            alt={title}
-            fill
-            className="object-cover"
-            sizes="width 100%"
-            priority={false}
-          />
-        ) : (
-          <iframe
-            src={url}
-            title={title}
-            allowFullScreen
-            key={date}
-            className="aspect-square w-full"
-          />
-        )}
-      </div>
+      {content}
 
       <div className="space-y-1 px-4 sm:px-0">
         <h3 className="text-sm font-semibold">{title}</h3>

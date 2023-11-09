@@ -16,7 +16,7 @@ import { formatToApi } from '@/utils/format-to-api'
 import Image from 'next/image'
 import { Avatar, AvatarFallback } from './ui/avatar'
 import { getAvatarCopyright } from '@/utils/get-avatar-copyright'
-import { FeedItemExplanation } from './feed-apod-item-explanation'
+import { FeedItemExplanation } from './feed-item-explanation'
 
 type DialogDateProps = {
   children: ReactNode

@@ -1,19 +1,23 @@
 'use client'
 
-import { Apod } from '@/services/planetary/types'
-import InfiniteScroll from 'react-infinite-scroller'
-import { FeedApodItem } from './feed-apod-item'
-import { useRef, useState } from 'react'
-import { apodFeed } from '@/services/planetary'
 import { subDays, subMonths } from 'date-fns'
-import { formatToApi } from '@/utils/format-to-api'
-import { FeedApodItemSkeleton } from './feed-apod-item-skeleton'
+import { useRef, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroller'
+import { v4 } from 'uuid'
 
-type FeedApodClientProps = {
+import { Apod } from '@/services/planetary/types'
+
+import { apodFeed } from '@/services/planetary'
+
+import { formatToApi } from '@/utils/format-to-api'
+import { FeedItemSkeleton } from './feed-item-skeleton'
+import { FeedItem } from './feed-item'
+
+type FeedClientProps = {
   initialContent: Apod
 }
 
-export const FeedApodClient = ({ initialContent }: FeedApodClientProps) => {
+export const FeedClient = ({ initialContent }: FeedClientProps) => {
   const fetching = useRef(false)
   const [pages, setPages] = useState([initialContent])
   const content = pages.flatMap((page) => page)
@@ -38,16 +42,18 @@ export const FeedApodClient = ({ initialContent }: FeedApodClientProps) => {
   }
 
   return (
-    <InfiniteScroll
-      hasMore
-      pageStart={0}
-      loadMore={loadMore}
-      loader={<FeedApodItemSkeleton />}
-      className="mx-auto grid max-w-[720px] grid-cols-2 gap-4 py-8"
-    >
-      {content.map((item) => {
-        return <FeedApodItem item={item} key={item.date} />
-      })}
-    </InfiniteScroll>
+    <div className="relative w-full">
+      <InfiniteScroll
+        hasMore
+        pageStart={0}
+        loadMore={loadMore}
+        loader={<FeedItemSkeleton />}
+        className="relative mx-auto max-w-feed space-y-8 py-8"
+      >
+        {content.map((item) => {
+          return <FeedItem item={item} key={v4()} variant="full" />
+        })}
+      </InfiniteScroll>
+    </div>
   )
 }

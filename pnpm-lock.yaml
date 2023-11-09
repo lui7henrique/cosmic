@@ -29,6 +29,9 @@ dependencies:
   '@radix-ui/react-tooltip':
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.0.0)(@types/react@18.2.37)(react-dom@18.0.0)(react@18.0.0)
+  '@types/uuid':
+    specifier: ^9.0.7
+    version: 9.0.7
   axios:
     specifier: ^1.6.0
     version: 1.6.0
@@ -74,6 +77,9 @@ dependencies:
   tailwindcss-animate:
     specifier: ^1.0.7
     version: 1.0.7(tailwindcss@3.3.0)
+  uuid:
+    specifier: ^9.0.1
+    version: 9.0.1
 
 devDependencies:
   '@rocketseat/eslint-config':
@@ -1123,6 +1129,10 @@ packages:
   /@types/semver@7.5.5:
     resolution: {integrity: sha512-+d+WYC1BxJ6yVOgUgzK8gWvp5qF8ssV5r4nsDcZWKRWcDQLQ619tvWAxJQYGgBrO1MnLJC7a5GtiYsAoQ47dJg==}
     dev: true
+
+  /@types/uuid@9.0.7:
+    resolution: {integrity: sha512-WUtIVRUZ9i5dYXefDEAI7sh9/O7jGvHg7Df/5O/gtH3Yabe5odI3UWopVR1qbPXQtvOxWu3mM4XxlYeZtMWF4g==}
+    dev: false
 
   /@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.0.0)(typescript@5.2.2):
     resolution: {integrity: sha512-TiZzBSJja/LbhNPvk6yc0JrX9XqhQ0hdh6M2svYfsHGejaKFIAGd9MQ+ERIMzLGlN/kZoYIgdxFV0PuljTKXag==}
@@ -4248,6 +4258,11 @@ packages:
 
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+
+  /uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+    dev: false
 
   /v8-compile-cache@2.4.0:
     resolution: {integrity: sha512-ocyWc3bAHBB/guyqJQVI5o4BZkPhznPYUG2ea80Gond/BgNWpap8TOmLSeeQG7bnh2KMISxskdADG59j7zruhw==}

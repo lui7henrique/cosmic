@@ -1,8 +1,10 @@
-import { DatePicker } from '@/components/date-picker'
-import { FeedApodItemSkeleton } from '@/components/feed-apod-item-skeleton'
-import FeedApod from '@/components/feed-apod-server'
-
 import { Suspense } from 'react'
+
+import { v4 } from 'uuid'
+
+import { DatePicker } from '@/components/date-picker'
+import FeedServer from '@/components/feed-server'
+import { FeedItemSkeleton } from '@/components/feed-item-skeleton'
 
 export default function Home() {
   return (
@@ -26,13 +28,13 @@ export default function Home() {
       <Suspense
         fallback={
           <div className="mx-auto max-w-feed space-y-8 py-8">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <FeedApodItemSkeleton key={index} />
+            {Array.from({ length: 5 }).map(() => (
+              <FeedItemSkeleton key={v4()} />
             ))}
           </div>
         }
       >
-        <FeedApod />
+        <FeedServer />
       </Suspense>
     </div>
   )

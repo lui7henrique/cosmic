@@ -24,7 +24,9 @@ export default function RootLayout({
     <html lang="en" className={roboto.className}>
       <body className={cn('overflow-x-hidden bg-background antialiased')}>
         <ThemeProvider>
-          {children} <ThemeToggle />
+          {children}
+
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { v4 } from 'uuid'
 import { ChevronLeftIcon, ChevronRightIcon } from '@radix-ui/react-icons'
 import { DayPicker, DropdownProps, useNavigation } from 'react-day-picker'
 
@@ -82,7 +83,7 @@ const CustomDropdown = (props: CustomDropdownProps) => {
             const { key, props } = item
 
             return (
-              <SelectItem value={String(props.value)} key={key}>
+              <SelectItem value={String(props.value)} key={v4()}>
                 {props.children}
               </SelectItem>
             )
