@@ -1,20 +1,22 @@
 import { ApodItem } from '@/services/planetary/types'
 import { format, formatDistance } from 'date-fns'
 import Image from 'next/image'
-import { Avatar, AvatarFallback } from './ui/avatar'
+
+import { Avatar, AvatarFallback } from '../ui/avatar'
 import { getAvatarCopyright } from '@/utils/get-avatar-copyright'
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './ui/tooltip'
-import { FeedItemExplanation } from './feed-item-explanation'
+} from '../ui/tooltip'
+import { FeedItemExplanation } from '../feed-item-explanation'
+import { ComponentProps } from 'react'
 
 type FeedItemProps = {
   item: ApodItem
   variant: 'minimal' | 'full'
-}
+} & ComponentProps<'div'>
 
 export const FeedItem = ({ item, variant }: FeedItemProps) => {
   const { date, copyright, explanation, url, title, media_type: type } = item
@@ -37,13 +39,14 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
           allowFullScreen
           key={date}
           className="aspect-square w-full"
+          data-testId="iframe"
         />
       )}
     </div>
   )
 
   if (variant === 'minimal') {
-    return <>{content}</>
+    return content
   }
 
   return (

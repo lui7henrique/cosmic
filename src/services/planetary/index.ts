@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { Apod, ApodItem } from './types'
 
-const planetary = axios.create({
+export const planetary = axios.create({
   baseURL: 'https://api.nasa.gov/planetary',
   params: {
-    api_key: process.env.NEXT_PUBLIC_NASA_API_KEY,
+    api_key: process.env.NEXT_PUBLIC_NASA_API_KEY || process.env.NASA_API_KEY,
   },
 })
 

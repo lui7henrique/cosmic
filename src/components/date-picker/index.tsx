@@ -13,8 +13,8 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 
-import { DialogDate } from './date-dialog'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { DialogDate } from '../date-dialog'
 
 const queryClient = new QueryClient()
 

@@ -10,22 +10,33 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-export function ThemeToggle() {
-  const { setTheme } = useTheme()
+type ThemeToggleProps = {
+  testing?: boolean
+}
+
+export function ThemeToggle({ testing }: ThemeToggleProps) {
+  const { setTheme, theme } = useTheme()
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={testing ?? undefined}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
           size="icon"
           className="pointer absolute right-4 top-4"
+          data-testid="theme-toggle"
         >
-          <span className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0">
+          <span
+            className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+            data-testid={theme === 'light' && 'current-theme'}
+          >
             🌞
           </span>
 
-          <span className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100">
+          <span
+            className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+            data-testid={theme === 'dark' && 'current-theme'}
+          >
             🌚
           </span>
 
@@ -40,10 +51,6 @@ export function ThemeToggle() {
 
         <DropdownMenuItem onClick={() => setTheme('dark')}>
           🌚 Dark
-        </DropdownMenuItem>
-
-        <DropdownMenuItem onClick={() => setTheme('system')}>
-          💻 System
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

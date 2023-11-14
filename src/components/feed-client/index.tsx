@@ -10,8 +10,8 @@ import { Apod } from '@/services/planetary/types'
 import { apodFeed } from '@/services/planetary'
 
 import { formatToApi } from '@/utils/format-to-api'
-import { FeedItemSkeleton } from './feed-item-skeleton'
-import { FeedItem } from './feed-item'
+import { FeedItemSkeleton } from '../feed-item-skeleton'
+import { FeedItem } from '../feed-item'
 
 type FeedClientProps = {
   initialContent: Apod
@@ -47,11 +47,12 @@ export const FeedClient = ({ initialContent }: FeedClientProps) => {
         hasMore
         pageStart={0}
         loadMore={loadMore}
-        loader={<FeedItemSkeleton />}
+        loader={<FeedItemSkeleton key={v4()} />}
         className="relative mx-auto max-w-feed space-y-8 py-8"
+        data-testId="feed"
       >
         {content.map((item) => {
-          return <FeedItem item={item} key={v4()} variant="full" />
+          return <FeedItem item={item} variant="full" key={item.title} />
         })}
       </InfiniteScroll>
     </div>

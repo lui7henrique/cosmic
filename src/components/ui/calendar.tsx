@@ -80,7 +80,7 @@ const CustomDropdown = (props: CustomDropdownProps) => {
       <SelectContent>
         <SelectGroup className="max-h-[300px] overflow-y-auto">
           {content.map((item) => {
-            const { key, props } = item
+            const { props } = item
 
             return (
               <SelectItem value={String(props.value)} key={v4()}>
