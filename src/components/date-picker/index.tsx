@@ -15,15 +15,25 @@ import {
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { DialogDate } from '../date-dialog'
+import Link from 'next/link'
+import { formatToApi } from '@/utils/format-to-api'
+import { formatToUI } from '@/utils/format-to-ui'
+import { useSearchParams } from 'next/navigation'
 
 const queryClient = new QueryClient()
 
 type DatePickerProps = {
   placeholder: string
+  variant?: 'link' | 'dialog'
+  defaultDate?: Date
 }
 
-export function DatePicker({ placeholder }: DatePickerProps) {
-  const [date, setDate] = useState<Date | undefined>(new Date())
+export function DatePicker({
+  placeholder,
+  variant = 'dialog',
+  defaultDate = new Date(),
+}: DatePickerProps) {
+  const [date, setDate] = useState<Date>(defaultDate)
 
   return (
     <>
@@ -38,7 +48,7 @@ export function DatePicker({ placeholder }: DatePickerProps) {
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
 
-            {date ? format(date, 'PPP') : <span>{placeholder}</span>}
+            {date ? formatToUI(date) : <span>{placeholder}</span>}
           </Button>
         </PopoverTrigger>
 
@@ -50,19 +60,27 @@ export function DatePicker({ placeholder }: DatePickerProps) {
             captionLayout="dropdown"
             fromYear={1995}
             toYear={new Date().getFullYear()}
-            disabled={{ after: new Date() }}
+            disabled={{ after: new Date(), before: new Date('06/16/1995') }}
             initialFocus
           />
         </PopoverContent>
       </Popover>
 
-      <QueryClientProvider client={queryClient}>
-        <DialogDate date={date ?? new Date()}>
-          <Button size="icon" variant="outline" disabled={!date}>
+      {variant === 'dialog' ? (
+        <QueryClientProvider client={queryClient}>
+          <DialogDate date={date ?? new Date()}>
+            <Button size="icon" variant="outline" disabled={!date}>
+              <MagnifyingGlassIcon className="h-4 w-4" />
+            </Button>
+          </DialogDate>
+        </QueryClientProvider>
+      ) : (
+        <Button size="icon" variant="outline" disabled={!date} asChild>
+          <Link href={`/timeline/${formatToApi(date)}`}>
             <MagnifyingGlassIcon className="h-4 w-4" />
-          </Button>
-        </DialogDate>
-      </QueryClientProvider>
+          </Link>
+        </Button>
+      )}
     </>
   )
 }

@@ -12,6 +12,8 @@ import {
 } from '../ui/tooltip'
 import { FeedItemExplanation } from '../feed-item-explanation'
 import { ComponentProps } from 'react'
+import { ExternalLinkIcon } from '@radix-ui/react-icons'
+import { formatToUI } from '@/utils/format-to-ui'
 
 type FeedItemProps = {
   item: ApodItem
@@ -19,7 +21,15 @@ type FeedItemProps = {
 } & ComponentProps<'div'>
 
 export const FeedItem = ({ item, variant }: FeedItemProps) => {
-  const { date, copyright, explanation, url, title, media_type: type } = item
+  const {
+    date,
+    copyright,
+    explanation,
+    url,
+    hdurl,
+    title,
+    media_type: type,
+  } = item
 
   const content = (
     <div className="relative aspect-square w-full overflow-hidden rounded-sm">
@@ -42,6 +52,14 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
           data-testId="iframe"
         />
       )}
+
+      <a
+        className="pointer absolute right-4 top-4 flex items-center justify-center rounded-sm bg-background p-1.5 text-xs"
+        href={hdurl || url}
+        target="_blank"
+      >
+        <ExternalLinkIcon />
+      </a>
     </div>
   )
 
@@ -73,7 +91,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
                 </TooltipTrigger>
 
                 <TooltipContent>
-                  <p>{format(new Date(date), 'PPP')}</p>
+                  <p>{formatToUI(new Date(date))}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>

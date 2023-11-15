@@ -3,8 +3,8 @@ import { Suspense } from 'react'
 import { v4 } from 'uuid'
 
 import { DatePicker } from '@/components/date-picker'
-import FeedServer from '@/components/feed-server'
 import { FeedItemSkeleton } from '@/components/feed-item-skeleton'
+import FeedServer from '@/components/feed-server'
 
 export default function Home() {
   return (

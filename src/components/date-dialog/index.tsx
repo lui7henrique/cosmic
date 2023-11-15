@@ -26,7 +26,7 @@ export const DialogDate = ({ children, date }: DialogDateProps) => {
       <Dialog>
         <DialogTrigger asChild>{children}</DialogTrigger>
 
-        <DialogContent className="max-h-[75vh] max-w-xl overflow-auto sm:max-h-none">
+        <DialogContent className="max-h-[90vh] max-w-xl overflow-auto">
           <FeedItemSkeleton />
         </DialogContent>
       </Dialog>
@@ -37,7 +37,7 @@ export const DialogDate = ({ children, date }: DialogDateProps) => {
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
 
-      <DialogContent className="max-h-[75vh] max-w-xl overflow-auto sm:max-h-none">
+      <DialogContent className="max-h-[90vh] max-w-xl overflow-auto">
         <FeedItem item={data} variant="full" />
       </DialogContent>
     </Dialog>

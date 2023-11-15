@@ -10,5 +10,5 @@ Every day a different photo or video of the universe, with a brief explanation f
 - [ ] Timeline with specific date
 
 ### Code
-- [] Tests in all components
+- [ ] All components with tests
  
