@@ -1,5 +1,5 @@
 import { ApodItem } from '@/services/planetary/types'
-import { format, formatDistance } from 'date-fns'
+import { formatDistance } from 'date-fns'
 import Image from 'next/image'
 
 import { Avatar, AvatarFallback } from '../ui/avatar'

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { CalendarIcon, MagnifyingGlassIcon } from '@radix-ui/react-icons'
-import { format } from 'date-fns'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -18,7 +17,6 @@ import { DialogDate } from '../date-dialog'
 import Link from 'next/link'
 import { formatToApi } from '@/utils/format-to-api'
 import { formatToUI } from '@/utils/format-to-ui'
-import { useSearchParams } from 'next/navigation'
 
 const queryClient = new QueryClient()
 

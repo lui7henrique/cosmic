@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Apod, ApodItem } from './types'
-import { add, addYears, differenceInYears, format } from 'date-fns'
+import { addYears, differenceInYears } from 'date-fns'
 import { formatToApi } from '@/utils/format-to-api'
 
 export const planetary = axios.create({
