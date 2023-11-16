@@ -1,13 +1,15 @@
-const withPWA = require("next-pwa")
-const isProd = process.env.NODE_ENV === "production"
-
-module.exports = withPWA({
-  reactStrictMode: true,
-  pwa: {
-    dest: "public",
-    disable: !isProd
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
-    domains: ["apod.nasa.gov"]
-  }
-})
+    remotePatterns: [
+      {
+        hostname: 'apod.nasa.gov',
+      },
+    ],
+  },
+  compiler: {
+    reactRemoveProperties: true,
+  },
+}
+
+module.exports = nextConfig
