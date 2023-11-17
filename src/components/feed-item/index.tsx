@@ -14,8 +14,6 @@ import { FeedItemExplanation } from '../feed-item-explanation'
 import { ComponentProps } from 'react'
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import { formatToUI } from '@/utils/format-to-ui'
-import { Badge } from '../ui/badge'
-import { Separator } from '../ui/separator'
 
 type FeedItemProps = {
   item: ApodItem
@@ -80,7 +78,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
         </Avatar>
 
         <div>
-          <p className="text-sm font-bold">{copyright ?? 'Unknown'}</p>
+          <h3 className="text-sm font-bold">{copyright ?? 'Unknown'}</h3>
 
           <div className="flex gap-2">
             <TooltipProvider>
@@ -107,8 +105,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
       {content}
 
       <div className="space-y-1 px-4 sm:px-0">
-        <h3 className="text-sm font-semibold">{title}</h3>
-
+        <h4 className="text-sm font-semibold">{title}</h4>
         <FeedItemExplanation explanation={explanation} />
       </div>
     </div>
