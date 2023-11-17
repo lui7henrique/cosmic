@@ -80,7 +80,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
         </Avatar>
 
         <div>
-          <h4 className="text-sm font-bold">{copyright ?? 'Unknown'}</h4>
+          <p className="text-sm font-bold">{copyright ?? 'Unknown'}</p>
 
           <div className="flex gap-2">
             <TooltipProvider>
