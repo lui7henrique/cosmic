@@ -48,6 +48,8 @@ export function DatePicker({
             <CalendarIcon className="mr-2 h-4 w-4" />
 
             {date ? formatToUI(date) : <span>{placeholder}</span>}
+
+            <span className="sr-only">Open popover date</span>
           </Button>
         </PopoverTrigger>
 
@@ -72,9 +74,10 @@ export function DatePicker({
               size="icon"
               variant="outline"
               disabled={!date}
-              aria-label="Open dialog"
+              aria-label="Open dialog date"
             >
               <MagnifyingGlassIcon className="h-4 w-4" />
+              <span className="sr-only">Open dialog date</span>
             </Button>
           </DialogDate>
         </QueryClientProvider>
@@ -88,6 +91,7 @@ export function DatePicker({
         >
           <Link href={`/timeline/${formatToApi(date)}`}>
             <MagnifyingGlassIcon className="h-4 w-4" />
+            <span className="sr-only">Open timeline page</span>
           </Link>
         </Button>
       )}
