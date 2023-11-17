@@ -25,6 +25,7 @@ export function ThemeToggle({ testing }: ThemeToggleProps) {
           size="icon"
           className="pointer absolute right-4 top-4"
           data-testid="theme-toggle"
+          aria-label="theme-toggle"
         >
           <span
             className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"

@@ -1,6 +1,12 @@
 import { DatePicker } from '@/components/date-picker'
 import { Timeline } from '@/components/timeline'
 import { formatToApi } from '@/utils/format-to-api'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Cosmic • Timeline',
+  description: 'See all the photos taken on one date.',
+}
 
 export default function TimelineDate({ params }: { params: { date: string } }) {
   const date = new Date(params.date)
