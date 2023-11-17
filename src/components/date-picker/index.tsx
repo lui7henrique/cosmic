@@ -43,7 +43,7 @@ export function DatePicker({
               'w-[250px] justify-start text-left font-normal',
               !date && 'text-muted-foreground',
             )}
-            aria-label="popover-button"
+            aria-label="Open popover date"
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
 
@@ -72,7 +72,7 @@ export function DatePicker({
               size="icon"
               variant="outline"
               disabled={!date}
-              aria-label="dialog-button"
+              aria-label="Open dialog"
             >
               <MagnifyingGlassIcon className="h-4 w-4" />
             </Button>
@@ -84,7 +84,7 @@ export function DatePicker({
           variant="outline"
           disabled={!date}
           asChild
-          aria-label="timeline-button"
+          aria-label="Open timeline page"
         >
           <Link href={`/timeline/${formatToApi(date)}`}>
             <MagnifyingGlassIcon className="h-4 w-4" />
