@@ -16,10 +16,10 @@ export const Timeline = async ({ date }: TimelineProps) => {
         <div className="mx-4 grid gap-4 sm:grid-cols-12">
           <aside className="relative col-span-12 sm:col-span-3">
             <div className="sticky top-4 mb-14 text-center before:mx-auto before:mb-5 before:block before:h-3 before:w-24 before:rounded-sm before:dark:bg-muted sm:text-left sm:before:mx-0">
-              <h3 className="text-2xl font-semibold">
+              <h2 className="text-2xl font-semibold">
                 {formatToUI(new Date(date), 'MMMM,')} <br />
                 {formatToUI(new Date(date), 'd') + 'th'}
-              </h3>
+              </h2>
             </div>
           </aside>
 
