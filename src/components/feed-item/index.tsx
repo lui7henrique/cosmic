@@ -59,6 +59,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
         className="pointer absolute right-4 top-4 flex items-center justify-center rounded-sm bg-background p-1.5 text-xs"
         href={hdurl || url}
         target="_blank"
+        aria-label={`View original ${formatToUI(new Date())} image`}
       >
         <ExternalLinkIcon />
       </a>

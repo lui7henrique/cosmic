@@ -86,10 +86,7 @@ export function DatePicker({
           asChild
           aria-label="timeline-button"
         >
-          <Link
-            href={`/timeline/${formatToApi(date)}`}
-            aria-label={`View original ${formatToUI(date)} image`}
-          >
+          <Link href={`/timeline/${formatToApi(date)}`}>
             <MagnifyingGlassIcon className="h-4 w-4" />
           </Link>
         </Button>
