@@ -20,7 +20,7 @@ export const FeedItemExplanation = ({
       </p>
 
       <p
-        className="mt-1 cursor-pointer text-xs text-muted-foreground/50"
+        className="mt-1 cursor-pointer text-xs text-muted-foreground underline"
         onClick={() => setShowFullExplanation((prev) => !prev)}
       >
         {showFullExplanation ? 'See less' : 'See more'}
