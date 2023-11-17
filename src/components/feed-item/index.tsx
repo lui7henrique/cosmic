@@ -78,7 +78,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
         </Avatar>
 
         <div>
-          <h3 className="text-sm font-bold">{copyright ?? 'Unknown'}</h3>
+          <p className="text-sm font-bold">{copyright ?? 'Unknown'}</p>
 
           <div className="flex gap-2">
             <TooltipProvider>
@@ -105,7 +105,7 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
       {content}
 
       <div className="space-y-1 px-4 sm:px-0">
-        <h4 className="text-sm font-semibold">{title}</h4>
+        <p className="text-sm font-semibold">{title}</p>
         <FeedItemExplanation explanation={explanation} />
       </div>
     </div>
