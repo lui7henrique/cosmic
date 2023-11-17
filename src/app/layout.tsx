@@ -12,7 +12,8 @@ const roboto = Roboto_Mono({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Cosmic',
-  description: '',
+  description:
+    'Every day a different photo or video of the universe, with a brief explanation from a professional astronomer!',
 }
 
 export default function RootLayout({

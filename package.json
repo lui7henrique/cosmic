@@ -17,6 +17,7 @@
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tooltip": "^1.0.7",
     "@types/uuid": "^9.0.7",
@@ -33,6 +34,7 @@
     "react-infinite-scroller": "^1.2.6",
     "react-input-mask": "3.0.0-alpha.2",
     "react-query": "^3.39.3",
+    "sharp": "^0.32.6",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "uuid": "^9.0.1"

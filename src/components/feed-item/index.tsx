@@ -14,10 +14,12 @@ import { FeedItemExplanation } from '../feed-item-explanation'
 import { ComponentProps } from 'react'
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 import { formatToUI } from '@/utils/format-to-ui'
+import { Badge } from '../ui/badge'
+import { Separator } from '../ui/separator'
 
 type FeedItemProps = {
   item: ApodItem
-  variant: 'minimal' | 'full'
+  variant: 'minimal' | 'full' | 'with-year'
 } & ComponentProps<'div'>
 
 export const FeedItem = ({ item, variant }: FeedItemProps) => {
@@ -84,9 +86,11 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="text-xs text-muted-foreground">
-                    {formatDistance(new Date(date), Date.now(), {
-                      addSuffix: true,
-                    })}
+                    {variant === 'with-year'
+                      ? formatToUI(new Date(date), 'yyyy')
+                      : formatDistance(new Date(date), Date.now(), {
+                          addSuffix: true,
+                        })}
                   </span>
                 </TooltipTrigger>
 
