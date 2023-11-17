@@ -43,6 +43,7 @@ export function DatePicker({
               'w-[250px] justify-start text-left font-normal',
               !date && 'text-muted-foreground',
             )}
+            aria-label="popover-button"
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
 
@@ -67,13 +68,24 @@ export function DatePicker({
       {variant === 'dialog' ? (
         <QueryClientProvider client={queryClient}>
           <DialogDate date={date ?? new Date()}>
-            <Button size="icon" variant="outline" disabled={!date}>
+            <Button
+              size="icon"
+              variant="outline"
+              disabled={!date}
+              aria-label="dialog-button"
+            >
               <MagnifyingGlassIcon className="h-4 w-4" />
             </Button>
           </DialogDate>
         </QueryClientProvider>
       ) : (
-        <Button size="icon" variant="outline" disabled={!date} asChild>
+        <Button
+          size="icon"
+          variant="outline"
+          disabled={!date}
+          asChild
+          aria-label="timeline-button"
+        >
           <Link href={`/timeline/${formatToApi(date)}`}>
             <MagnifyingGlassIcon className="h-4 w-4" />
           </Link>
