@@ -68,6 +68,47 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
     return content
   }
 
+  if (variant === 'with-year') {
+    return (
+      <div className="w-full space-y-4">
+        <div className="flex items-center gap-2">
+          <Avatar>
+            <AvatarFallback>
+              {copyright ? getAvatarCopyright(copyright) : 'U'}
+            </AvatarFallback>
+          </Avatar>
+
+          <div>
+            <p className="text-sm font-bold">{copyright ?? 'Unknown'}</p>
+
+            <div className="flex gap-2">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span className="text-xs text-muted-foreground">
+                      {formatToUI(new Date(date), 'yyyy')}
+                    </span>
+                  </TooltipTrigger>
+
+                  <TooltipContent>
+                    <p>{formatToUI(new Date(date))}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </div>
+        </div>
+
+        {content}
+
+        <div className="space-y-1">
+          <p className="text-sm font-semibold">{title}</p>
+          <FeedItemExplanation explanation={explanation} />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="w-full space-y-4">
       <div className="flex items-center gap-2 px-4 sm:px-0">
@@ -85,11 +126,9 @@ export const FeedItem = ({ item, variant }: FeedItemProps) => {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span className="text-xs text-muted-foreground">
-                    {variant === 'with-year'
-                      ? formatToUI(new Date(date), 'yyyy')
-                      : formatDistance(new Date(date), Date.now(), {
-                          addSuffix: true,
-                        })}
+                    {formatDistance(new Date(date), Date.now(), {
+                      addSuffix: true,
+                    })}
                   </span>
                 </TooltipTrigger>
 

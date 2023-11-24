@@ -9,7 +9,7 @@ type TimelineItemProps = {
 
 export const TimelineItem = ({ item }: TimelineItemProps) => {
   return (
-    <div className="flex flex-col gap-4 before:dark:bg-muted-foreground sm:relative sm:before:absolute sm:before:left-[-35px] sm:before:top-2 sm:before:z-[1] sm:before:h-4 sm:before:w-4 sm:before:rounded-full">
+    <div className="relative flex flex-col gap-4 before:absolute before:left-[-35px] before:top-2 before:z-[1] before:h-4 before:w-4 before:rounded-full before:dark:bg-muted-foreground">
       <FeedItem variant="with-year" item={item} />
     </div>
   )
