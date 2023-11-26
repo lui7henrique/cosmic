@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 // eslint-disable-next-line camelcase
 import { Roboto_Mono } from 'next/font/google'
+import NextTopLoader from 'nextjs-toploader'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 
 import './globals.css'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { Header } from '@/components/header'
 
 const roboto = Roboto_Mono({ subsets: ['latin'] })
 
@@ -24,7 +26,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={roboto.className}>
       <body className={cn('overflow-x-hidden bg-background antialiased')}>
+        <NextTopLoader showSpinner={false} />
+
         <ThemeProvider>
+          <Header />
+
           {children}
 
           <ThemeToggle />

@@ -28,6 +28,7 @@
     "lucide-react": "^0.292.0",
     "next": "14.0.1",
     "next-themes": "^0.2.1",
+    "nextjs-toploader": "^1.6.4",
     "react": "^18",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18",
