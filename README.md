@@ -1,6 +1,6 @@
 # 👨‍🚀 Cosmic
 
-Every day a different photo or video of the universe, with a brief explanation from a professional astronomer made with `Next.js` 14 and `shadncn`.
+Every day a different photo or video of the universe, with a brief explanation from a professional astronomer made with `Next.js` and `shadncn`.
 
 # ✅ To-do
 
